@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS MOTORS — Підбір спецтехніки з Європи</title>
+<meta name="description" content="Підбираємо, перевіряємо та доставляємо вживану будівельну техніку з ЄС «під ключ». Особистий виїзд на діагностику перед покупкою. Понад 12 років досвіду.">
+<link rel="icon" href="images/logo.jpg" type="image/jpeg">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#121110',
+          elev: '#1a1815',
+          card: '#1f1c18',
+          ink: '#f4f0e6',
+          dim: '#a39c8f',
+          yellow: '#f5c21d',
+          'yellow-dim': '#c99a12',
+          line: 'rgba(244,240,230,0.09)',
+        },
+        fontFamily: {
+          display: ['"Unbounded"', 'sans-serif'],
+          body: ['"Golos Text"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --bg:#121110; --elev:#1a1815; --card:#1f1c18;
+    --ink:#f4f0e6; --dim:#a39c8f; --yellow:#f5c21d; --yellow-dim:#c99a12;
+    --line: rgba(244,240,230,0.09);
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Golos Text', sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--yellow); color:#161410; }
+
+  /* grain overlay */
+  body::before{
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:60;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,h2,h3,h4{ font-family:'Unbounded', sans-serif; letter-spacing:-0.02em; }
+
+  .h1{ font-size:clamp(1.55rem, 3vw, 3.15rem); font-weight:700; line-height:1.1; letter-spacing:-0.03em; }
+  .h2{ font-size:clamp(1.9rem, 3.6vw, 3.1rem); font-weight:600; line-height:1.1; letter-spacing:-0.025em; }
+  .h3{ font-size:clamp(1.25rem, 1.8vw, 1.6rem); font-weight:600; line-height:1.25; }
+  .eyebrow{ font-family:'Unbounded', sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+
+  .container-x{ max-width:1280px; margin-inline:auto; padding-inline:1.5rem; }
+  @media(min-width:768px){ .container-x{ padding-inline:2.5rem; } }
+
+  /* badge */
+  .badge{
+    display:inline-flex; align-items:center; gap:.5rem;
+    border:1px solid var(--line); background:rgba(245,194,29,0.06);
+    padding:.45rem 1rem .45rem .75rem; border-radius:999px;
+    color:var(--yellow);
+  }
+  .badge svg{ width:14px; height:14px; flex:none; }
+
+  /* buttons */
+  .btn{
+    position:relative; display:inline-flex; align-items:center; gap:.75rem;
+    font-family:'Unbounded', sans-serif; font-weight:600; font-size:.86rem;
+    padding:.2rem .3rem .2rem 1.3rem; border-radius:999px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), background-color .3s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--yellow); color:#161410; }
+  .btn-primary .btn-circle{ background:#161410; color:var(--yellow); }
+  .btn-primary:hover{ background:#ffd43f; transform:translateY(-2px); box-shadow:0 14px 30px -10px rgba(245,194,29,.45); }
+  .btn-primary:active{ transform:translateY(0); }
+  .btn-primary:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
+
+  .btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); padding:.2rem .3rem .2rem 1.3rem; }
+  .btn-ghost .btn-circle{ background:var(--ink); color:#161410; }
+  .btn-ghost:hover{ border-color:rgba(244,240,230,.35); transform:translateY(-2px); background:rgba(244,240,230,.04); }
+  .btn-ghost:focus-visible{ outline:2px solid var(--yellow); outline-offset:3px; }
+
+  .btn-circle{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:2.15rem; height:2.15rem; border-radius:999px; flex:none;
+    transition:transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .btn:hover .btn-circle{ transform:rotate(45deg); }
+  .btn-circle svg{ width:14px; height:14px; }
+
+  .btn-sm{ padding:.15rem .3rem .15rem 1rem; font-size:.78rem; }
+  .btn-sm .btn-circle{ width:1.8rem; height:1.8rem; }
+
+  /* cards & surfaces */
+  .surface{ background:var(--card); border:1px solid var(--line); border-radius:1.4rem; }
+  .surface-hover{ transition:transform .45s cubic-bezier(.16,1,.3,1), border-color .35s ease, box-shadow .45s cubic-bezier(.16,1,.3,1); }
+  .surface-hover:hover{ transform:translateY(-6px); border-color:rgba(245,194,29,.35); box-shadow:0 30px 60px -30px rgba(0,0,0,.6); }
+
+  .hairline{ border-top:1px solid var(--line); }
+
+  /* number chip */
+  .num{ font-family:'Unbounded',sans-serif; font-weight:700; color:var(--yellow); }
+
+  /* radial glow blobs */
+  .glow{ position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+  .reveal-delay-1.visible{ transition-delay:.08s; }
+  .reveal-delay-2.visible{ transition-delay:.16s; }
+  .reveal-delay-3.visible{ transition-delay:.24s; }
+  .reveal-delay-4.visible{ transition-delay:.32s; }
+
+  /* nav link underline */
+  .nav-link{ position:relative; color:var(--dim); transition:color .3s ease; }
+  .nav-link::after{ content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px; background:var(--yellow); transform:scaleX(0); transform-origin:right; transition:transform .35s cubic-bezier(.16,1,.3,1); }
+  .nav-link:hover{ color:var(--ink); }
+  .nav-link:hover::after{ transform:scaleX(1); transform-origin:left; }
+
+  /* image treatment */
+  .img-frame{ position:relative; overflow:hidden; border-radius:1.4rem; }
+  .img-frame img{ display:block; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.16,1,.3,1); }
+  .img-frame:hover img{ transform:scale(1.045); }
+  .img-tint{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,17,16,0) 40%, rgba(18,17,16,.85) 100%); }
+  .img-mix{ position:absolute; inset:0; background:#f5c21d; mix-blend-mode:multiply; opacity:.08; pointer-events:none; }
+
+  /* mobile nav */
+  .mobile-nav{ transform:translateY(-100%); transition:transform .5s cubic-bezier(.16,1,.3,1); }
+  .mobile-nav.open{ transform:translateY(0); }
+  .burger-bar{ transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .35s ease; }
+  #menuBtn[aria-expanded="true"] .burger-bar:first-child{ transform:translateY(3.5px) rotate(45deg); }
+  #menuBtn[aria-expanded="true"] .burger-bar:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
+
+  /* form fields */
+  .field{
+    width:100%; background:var(--elev); border:1px solid var(--line); border-radius:.85rem;
+    padding:.9rem 1.1rem; color:var(--ink); font-family:'Golos Text',sans-serif; font-size:.95rem;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  .field::placeholder{ color:#6b6459; }
+  .field:focus{ outline:none; border-color:var(--yellow); background:#201d18; }
+  select.field{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23a39c8f' stroke-width='1.6'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; background-size:16px; }
+
+  .checklist li{ display:flex; align-items:flex-start; gap:.75rem; }
+  .checklist svg{ width:18px; height:18px; flex:none; margin-top:.2rem; color:var(--yellow); }
+
+  /* hero checklist */
+  .hero-check li{ display:flex; align-items:center; gap:.85rem; color:var(--ink); font-size:1rem; }
+  .hero-check-icon{
+    display:inline-flex; align-items:center; justify-content:center; flex:none;
+    width:1.6rem; height:1.6rem; border-radius:999px; background:rgba(245,194,29,.14); color:var(--yellow);
+  }
+  .hero-check-icon svg{ width:12px; height:12px; }
+
+  /* hero bottom stat row */
+  .hero-stat{ display:flex; align-items:center; gap:1rem; }
+  .hero-stat-icon{
+    display:inline-flex; align-items:center; justify-content:center; flex:none;
+    width:2.75rem; height:2.75rem; border-radius:.85rem; border:1px solid var(--line); color:var(--yellow);
+  }
+  .hero-stat-icon svg{ width:19px; height:19px; }
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:#332f28; border-radius:999px; }
+
+  /* partner logo tiles */
+  .partner-card{
+    display:flex; align-items:center; justify-content:center;
+    height:6rem; padding:1.25rem 1.75rem; border-radius:1rem;
+    background:var(--ink); border:1px solid rgba(0,0,0,.04);
+    transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1), background .4s ease;
+  }
+  .partner-card:hover{ transform:translateY(-5px); box-shadow:0 22px 44px -20px rgba(245,194,29,.4); background:#fffdf8; }
+  .partner-card img{ max-height:2.6rem; max-width:9.5rem; width:auto; height:auto; object-fit:contain; }
+  .partner-card svg{ max-height:2.6rem; max-width:9.5rem; width:auto; height:auto; }
+
+  /* scroll-tracked steps rail */
+  .steps-rail{ position:relative; padding-left:2.75rem; }
+  .steps-track-bg, .steps-track-fill{
+    position:absolute; left:0; top:2px; bottom:2px; width:2px; border-radius:999px;
+  }
+  .steps-track-bg{ background:var(--line); }
+  .steps-track-fill{ background:var(--yellow); transform-origin:top center; transform:scaleY(0); will-change:transform; }
+
+  .step-item{ position:relative; padding-bottom:6.5rem; }
+  .step-item:last-child{ padding-bottom:0; }
+  .step-marker{
+    position:absolute; left:calc(-2.75rem - 1.175rem + 1px); top:-.3rem;
+    width:2.35rem; height:2.35rem; border-radius:999px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Unbounded',sans-serif; font-size:.72rem; font-weight:700;
+    background:var(--bg); border:1px solid var(--line); color:var(--dim);
+    transition:background .4s cubic-bezier(.16,1,.3,1), border-color .4s cubic-bezier(.16,1,.3,1), color .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+    z-index:2;
+  }
+  .step-item.active .step-marker{ background:var(--yellow); border-color:var(--yellow); color:#161410; transform:scale(1.08); }
+
+  /* cases slider */
+  .cases-track{
+    display:flex; gap:1.5rem; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; margin:0 -1.5rem; padding:0 1.5rem .5rem;
+  }
+  .cases-track::-webkit-scrollbar{ display:none; }
+  .case-card{ flex:0 0 auto; width:82%; scroll-snap-align:start; }
+  @media(min-width:640px){ .case-card{ width:48%; } }
+  @media(min-width:1024px){ .case-card{ width:31.5%; } }
+
+  .cases-progress-track{ height:2px; border-radius:999px; overflow:hidden; background:var(--line); flex:1; }
+  .cases-progress-fill{ height:100%; width:100%; background:var(--yellow); transform-origin:left center; transform:scaleX(0); will-change:transform; }
+
+  .slider-arrow{
+    width:2.75rem; height:2.75rem; border-radius:999px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--elev); border:1px solid var(--line); color:var(--ink);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .35s ease, color .35s ease, opacity .35s ease;
+  }
+  .slider-arrow svg{ width:18px; height:18px; }
+  .slider-arrow:hover{ border-color:rgba(245,194,29,.45); color:var(--yellow); }
+  .slider-arrow:active{ transform:scale(.9); }
+  .slider-arrow:focus-visible{ outline:2px solid var(--yellow); outline-offset:3px; }
+  .slider-arrow:disabled{ opacity:.3; pointer-events:none; }
+
+  /* problem / solution comparison */
+  .compare-card{
+    display:flex; align-items:flex-start; gap:1rem;
+    background:var(--card); border:1px solid var(--line); border-radius:1rem;
+    padding:1.15rem 1.3rem;
+    transition:border-color .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .compare-card:hover{ transform:translateX(2px); }
+  .compare-icon{
+    width:2.15rem; height:2.15rem; border-radius:.65rem; flex:none;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .compare-icon svg{ width:14px; height:14px; }
+  .compare-icon.is-bad{ background:rgba(224,90,79,.13); color:#e05a4f; }
+  .compare-icon.is-good{ background:rgba(245,194,29,.14); color:var(--yellow); }
+
+  .compare-divider{ position:relative; }
+  .compare-divider-line{ position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(244,240,230,.16); transform:translateX(-50%); }
+  .compare-divider-arrow{ position:relative; z-index:1; margin:0 auto; }
+  .compare-divider-label{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) rotate(180deg);
+    writing-mode:vertical-rl; text-orientation:mixed;
+    font-family:'Unbounded', sans-serif; font-size:.68rem; font-weight:600; letter-spacing:.18em;
+    color:var(--dim); background:var(--bg); padding:.6rem .1rem; white-space:nowrap;
+  }
+</style>
+</head>
+<body class="font-body antialiased">
+
+<!-- ============ HEADER ============ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-line backdrop-blur-md" style="background:rgba(18,17,16,.82)">
+  <div class="container-x flex items-center justify-between py-4">
+    <a href="#hero" class="flex items-center gap-3 shrink-0">
+      <img src="images/logo.jpg" alt="DS Motors" class="w-11 h-11 rounded-xl object-cover">
+      <span class="font-display font-bold tracking-tight text-lg leading-none">DS MOTORS</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 font-body text-sm">
+      <a href="#equipment" class="nav-link">Техніка</a>
+      <a href="#service" class="nav-link">Послуги</a>
+      <a href="#inspection" class="nav-link">Діагностика</a>
+      <a href="#about" class="nav-link">Про&nbsp;нас</a>
+      <a href="#cases" class="nav-link">Кейси</a>
+      <a href="#contacts" class="nav-link">Контакти</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-5">
+      <a href="tel:+48798586775" class="text-sm text-dim hover:text-ink transition-colors">+48 798 586 775</a>
+      <a href="#form" class="btn btn-primary">Залишити заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+    </div>
+
+    <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5" aria-label="Меню" aria-expanded="false">
+      <span class="burger-bar block w-6 h-[1.5px] bg-ink"></span>
+      <span class="burger-bar block w-6 h-[1.5px] bg-ink"></span>
+    </button>
+  </div>
+</header>
+
+<!-- mobile nav overlay -->
+<div id="mobileNav" class="mobile-nav fixed inset-0 z-40 bg-bg flex flex-col pt-24 px-6 lg:hidden">
+  <nav class="flex flex-col gap-6 font-display text-2xl">
+    <a href="#equipment" class="mnav-link">Техніка</a>
+    <a href="#service" class="mnav-link">Послуги</a>
+    <a href="#inspection" class="mnav-link">Діагностика</a>
+    <a href="#about" class="mnav-link">Про&nbsp;нас</a>
+    <a href="#cases" class="mnav-link">Кейси</a>
+    <a href="#contacts" class="mnav-link">Контакти</a>
+  </nav>
+  <div class="mt-10 pt-10 border-t border-line flex flex-col gap-4">
+    <a href="tel:+48798586775" class="text-dim">+48 798 586 775</a>
+    <a href="#form" class="mnav-link btn btn-primary w-full justify-center">Залишити заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative overflow-hidden lg:min-h-screen">
+  <div class="glow w-[36rem] h-[36rem] bg-yellow/10 -top-40 -left-40"></div>
+
+  <div class="pt-36 pb-16 md:pt-44 md:pb-20 lg:py-40 lg:min-h-screen lg:flex lg:flex-col lg:justify-between pl-6 pr-6 sm:pl-10 sm:pr-10 lg:pl-[max(2.5rem,calc((100vw-1280px)/2+2.5rem))] lg:pr-[calc(45vw+3rem)]">
+    <div class="reveal max-w-2xl">
+      <span class="badge self-start"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Вживана техніка з Європи</span>
+
+      <h1 class="h1 mt-6">Спецтехніка з ЄС.<br>Без скручених<br><span class="text-yellow">мотогодин</span>.</h1>
+
+      <ul class="hero-check mt-7 space-y-3.5">
+        <li><span class="hero-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Реальний наробіток — без скручених&nbsp;мотогодин</li>
+        <li><span class="hero-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Особистий виїзд і діагностика перед&nbsp;покупкою</li>
+        <li><span class="hero-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Підбір за 1 тиждень, термінові запити — за&nbsp;1–2&nbsp;дні</li>
+      </ul>
+
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a href="#form" class="btn btn-primary w-full lg:w-auto justify-center">Залишити заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+        <a href="tel:+48798586775" class="btn btn-ghost w-full lg:w-auto justify-center">Подзвонити нам<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2 relative mt-8 lg:mt-0 mx-6 sm:mx-10 lg:mx-0 aspect-[4/5] lg:aspect-auto rounded-[1.4rem] lg:rounded-none overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:w-[45vw]">
+      <img src="images/hero-bg.jpg" alt="Ми — засновники DS Motors, на майданчику техніки в Європі" class="w-full h-full object-cover">
+      <div class="img-tint"></div>
+      <div class="img-mix"></div>
+      <div class="absolute bottom-6 left-6 right-6 lg:left-10 lg:right-10 surface px-5 py-3.5 flex items-center justify-center gap-3 bg-elev/90 backdrop-blur">
+        <span class="hero-stat-icon shrink-0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.7-3.2 3-5 5.5-5s4.8 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.8 14.2c1.9.4 3.4 1.9 3.9 4.3"/></svg></span>
+        <span class="text-sm text-center">Довіряють <span class="text-yellow font-semibold">1000+</span> клієнтів по всій&nbsp;Україні</span>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-1 mt-8 lg:mt-0 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 max-w-xl">
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></span>
+        <span><span class="num text-lg block leading-tight">12+&nbsp;років</span><span class="text-xs text-dim">на&nbsp;ринку</span></span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5h13v9H3z"/><path d="M16 11h3l2 2.5v4H16z"/><circle cx="7.5" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/></svg></span>
+        <span><span class="num text-lg block leading-tight">500+&nbsp;одиниць</span><span class="text-xs text-dim">підібрано</span></span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.7-3.2 3-5 5.5-5s4.8 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.8 14.2c1.9.4 3.4 1.9 3.9 4.3"/></svg></span>
+        <span><span class="num text-lg block leading-tight">1000+&nbsp;клієнтів</span><span class="text-xs text-dim">скарг&nbsp;немає</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAIN / SOLUTION ============ -->
+<section id="pain" class="py-20 md:py-28 border-t border-line relative">
+  <div class="container-x">
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <span class="badge mx-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Проблема</span>
+      <h2 class="h2 mt-5">Купівля наосліп —<br>ризик ремонту на понад <span class="text-yellow">10&nbsp;000&nbsp;€</span></h2>
+    </div>
+
+    <div class="mt-14 grid lg:grid-cols-[1fr_auto_1fr] gap-5 lg:gap-10">
+      <div class="space-y-4 reveal reveal-delay-1">
+        <div class="compare-card">
+          <span class="compare-icon is-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <p class="text-[0.95rem] leading-relaxed text-ink/80">Лічильник мотогодин легко скрутити — ви переплачуєте за старт техніки</p>
+        </div>
+        <div class="compare-card">
+          <span class="compare-icon is-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <p class="text-[0.95rem] leading-relaxed text-ink/80">Без технічної експертизи важко оцінити реальний стан&nbsp;техніки</p>
+        </div>
+        <div class="compare-card">
+          <span class="compare-icon is-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <p class="text-[0.95rem] leading-relaxed text-ink/80">Самостійний пошук і перемовини з продавцями в Європі — тижні&nbsp;часу</p>
+        </div>
+      </div>
+
+      <div class="compare-divider hidden lg:block reveal reveal-delay-2">
+        <div class="compare-divider-line"></div>
+        <span class="compare-divider-arrow slider-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"/></svg></span>
+        <span class="compare-divider-label">МИ ЦЕ ВИРІШУЄМО</span>
+      </div>
+
+      <div class="flex lg:hidden items-center gap-3 reveal reveal-delay-2">
+        <span class="h-px flex-1 bg-line"></span>
+        <span class="eyebrow text-dim text-xs shrink-0">Ми це вирішуємо</span>
+        <span class="h-px flex-1 bg-line"></span>
+      </div>
+
+      <div class="space-y-4 reveal reveal-delay-3">
+        <div class="compare-card">
+          <span class="compare-icon is-good"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></span>
+          <p class="text-[0.95rem] leading-relaxed text-ink/80">Перевіряємо реальний наробіток і звіряємо лічильник із сервісною&nbsp;історією</p>
+        </div>
+        <div class="compare-card">
+          <span class="compare-icon is-good"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></span>
+          <p class="text-[0.95rem] leading-relaxed text-ink/80">Проводимо повну діагностику: двигун, гідравліка, рама, трансмісія</p>
+        </div>
+        <div class="compare-card">
+          <span class="compare-icon is-good"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></span>
+          <p class="text-[0.95rem] leading-relaxed text-ink/80">Підбираємо варіанти в середньому за тиждень, термінові запити — за&nbsp;1–2&nbsp;дні</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA 1 ============ -->
+<section class="py-4">
+  <div class="container-x">
+    <div class="surface reveal p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6" style="background:linear-gradient(135deg, rgba(245,194,29,.09), rgba(245,194,29,.02));">
+      <div>
+        <p class="h3">Опишіть, яка техніка потрібна — ми особисто&nbsp;зателефонуємо</p>
+        <p class="text-dim mt-2 text-sm">Обговоримо задачу та підберемо кілька варіантів на вибір, без&nbsp;зобов'язань.</p>
+      </div>
+      <a href="#form" class="btn btn-primary shrink-0 w-full lg:w-auto justify-center">Залишити заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPMENT CATEGORIES ============ -->
+<section id="equipment" class="py-20 md:py-28">
+  <div class="container-x">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+      <div class="max-w-xl">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Категорії техніки</span>
+        <h2 class="h2 mt-5">Підбираємо техніку під будь-яку&nbsp;задачу</h2>
+      </div>
+      <p class="text-dim max-w-sm">Виключно вживана техніка з Європи — реальний, підтверджений наробіток замість «скручених»&nbsp;мотогодин.</p>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <a href="#form" class="surface surface-hover overflow-hidden group reveal reveal-delay-1">
+        <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/eq-excavator.jpg" alt="Екскаватори та міні-екскаватори"><div class="img-mix"></div></div>
+        <div class="p-6 flex items-center justify-between">
+          <div><p class="font-display font-semibold">Екскаватори</p><p class="text-xs text-dim mt-1">та міні-екскаватори, 2–10+&nbsp;тонн</p></div>
+          <span class="btn-circle border border-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#form" class="surface surface-hover overflow-hidden group reveal reveal-delay-2">
+        <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/eq-telehandler.jpg" alt="Телескопічні навантажувачі"><div class="img-mix"></div></div>
+        <div class="p-6 flex items-center justify-between">
+          <div class="min-w-0"><p class="font-display font-semibold">Телескопічні навантажувачі</p><p class="text-xs text-dim mt-1">для будівництва та&nbsp;складів</p></div>
+          <span class="btn-circle border border-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#form" class="surface surface-hover overflow-hidden group reveal reveal-delay-3">
+        <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/eq-dumptruck.jpg" alt="Самоскиди"><div class="img-mix"></div></div>
+        <div class="p-6 flex items-center justify-between">
+          <div><p class="font-display font-semibold">Самоскиди</p><p class="text-xs text-dim mt-1">для перевезення сипучих&nbsp;матеріалів</p></div>
+          <span class="btn-circle border border-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#form" class="surface surface-hover overflow-hidden group reveal reveal-delay-1">
+        <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/eq-tractor.jpg" alt="Трактори та сільгосптехніка"><div class="img-mix"></div></div>
+        <div class="p-6 flex items-center justify-between">
+          <div><p class="font-display font-semibold">Трактори</p><p class="text-xs text-dim mt-1">та сільськогосподарська&nbsp;техніка</p></div>
+          <span class="btn-circle border border-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#form" class="surface surface-hover overflow-hidden group reveal reveal-delay-2">
+        <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/eq-crane.jpg" alt="Баштові крани"><div class="img-mix"></div></div>
+        <div class="p-6 flex items-center justify-between">
+          <div><p class="font-display font-semibold">Баштові&nbsp;крани</p><p class="text-xs text-dim mt-1">включно з демонтажем і&nbsp;логістикою</p></div>
+          <span class="btn-circle border border-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <div class="surface p-6 flex flex-col justify-center items-start gap-4 reveal reveal-delay-3" style="background:linear-gradient(135deg, rgba(245,194,29,.1), rgba(245,194,29,.02));">
+        <p class="h3">Не знайшли потрібну&nbsp;категорію?</p>
+        <p class="text-dim text-sm">Підберемо будь-яку спецтехніку під ваш запит — просто опишіть&nbsp;задачу.</p>
+        <a href="#form" class="btn btn-primary btn-sm w-full lg:w-auto justify-center">Залишити заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE + PRICING ============ -->
+<section id="service" class="py-20 md:py-28 border-t border-line">
+  <div class="container-x">
+    <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-x-14">
+      <!-- sticky intro -->
+      <div class="lg:sticky lg:top-32 lg:self-start reveal lg:pb-20">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Як ми працюємо</span>
+        <h2 class="h2 mt-5">Повний цикл — від заявки до техніки на&nbsp;майданчику</h2>
+        <p class="mt-5 text-dim max-w-sm">Від нашого першого дзвінка до розмитненої техніки на вашому майданчику — сім кроків, які ми проходимо разом із&nbsp;вами.</p>
+      </div>
+
+      <!-- scroll-tracked steps -->
+      <div id="stepsRail" class="steps-rail mt-14 lg:mt-0">
+        <div class="steps-track-bg"></div>
+        <div class="steps-track-fill" id="stepsTrackFill"></div>
+
+        <div class="step-item" data-step>
+          <span class="step-marker">01</span>
+          <div class="reveal"><h3 class="h3">Заявка — особистий дзвінок від&nbsp;нас</h3><p class="mt-2 text-dim">Ви залишаєте заявку, і ми особисто передзвонюємо, щоб обговорити&nbsp;задачу.</p></div>
+        </div>
+        <div class="step-item" data-step>
+          <span class="step-marker">02</span>
+          <div class="reveal"><h3 class="h3">Обговорення задачі, кілька варіантів техніки на&nbsp;вибір</h3><p class="mt-2 text-dim">Разом визначаємо, яка техніка підійде — пропонуємо кілька&nbsp;варіантів.</p></div>
+        </div>
+        <div class="step-item" data-step>
+          <span class="step-marker">03</span>
+          <div class="reveal"><h3 class="h3">Узгодження напрямку пошуку разом із&nbsp;вами</h3><p class="mt-2 text-dim">Обираємо оптимальний напрямок пошуку та джерела техніки в&nbsp;Європі.</p></div>
+        </div>
+        <div class="step-item" data-step>
+          <span class="step-marker">04</span>
+          <div class="reveal"><h3 class="h3">Підписання&nbsp;договору</h3><p class="mt-2 text-dim">Фіксуємо умови співпраці — прозоро й без прихованих&nbsp;платежів.</p></div>
+        </div>
+        <div class="step-item" data-step>
+          <span class="step-marker">05</span>
+          <div class="reveal"><h3 class="h3">Виїзд на місце, технічна діагностика перед&nbsp;покупкою</h3><p class="mt-2 text-dim">Особисто перевіряємо стрілу, двигун, коробку передач, раму, мости й&nbsp;блокування.</p></div>
+        </div>
+        <div class="step-item" data-step>
+          <span class="step-marker">06</span>
+          <div class="reveal"><h3 class="h3">Фото- та відеозвіт&nbsp;клієнту</h3><p class="mt-2 text-dim">Надсилаємо детальний фото- і відеозвіт про реальний стан&nbsp;техніки.</p></div>
+        </div>
+        <div class="step-item" data-step>
+          <span class="step-marker">07</span>
+          <div class="reveal"><h3 class="h3">Розмитнення та доставка «під&nbsp;ключ»</h3><p class="mt-2 text-dim">Оформлюємо розмитнення і доставляємо техніку на ваш&nbsp;майданчик.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 surface reveal p-7 md:p-9 grid md:grid-cols-[1fr_.7fr] gap-8 items-center">
+      <div>
+        <p class="h3">Що входить у&nbsp;вартість</p>
+        <ul class="checklist mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-3.5 text-sm text-dim">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Пошук і підбір варіантів під вашу&nbsp;задачу</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Особистий виїзд і діагностика перед&nbsp;купівлею</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Фото- та відеозвіт про стан&nbsp;техніки</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Супровід угоди та&nbsp;документів</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Розмитнення та доставка в Україну «під&nbsp;ключ»</li>
+        </ul>
+      </div>
+      <div class="md:border-l md:border-line md:pl-8">
+        <p class="text-sm text-dim">Вартість підбору узгоджується індивідуально — залежить від техніки, майданчика та маршруту&nbsp;доставки.</p>
+        <a href="#form" class="btn btn-primary mt-6 w-full lg:w-auto justify-center">Дізнатись вартість<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSPECTION / DIAGNOSTICS ============ -->
+<section id="inspection" class="py-20 md:py-28 border-t border-line">
+  <div class="container-x grid lg:grid-cols-2 gap-14 lg:items-stretch">
+    <div class="img-frame aspect-[4/3] lg:aspect-auto lg:h-full reveal">
+      <img src="images/inspection-process.jpg" alt="Технічна діагностика екскаватора перед покупкою" class="lg:absolute lg:inset-0">
+      <div class="img-mix"></div>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Перевірка перед покупкою</span>
+      <h2 class="h2 mt-5">Оглядаємо техніку особисто — до того, як ви&nbsp;заплатите</h2>
+      <p class="mt-5 text-dim">Перед кожною угодою — виїзд на місце і повна технічна діагностика. Так ми, наприклад, знайшли несправний коннектор на баштовому крані Liebherr у Німеччині — продавець про нього навіть не знав. Усе відремонтували та докомплектували за рахунок продавця ще до&nbsp;оплати.</p>
+
+      <ul class="checklist mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3.5 text-sm text-dim">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Стріла та&nbsp;гідравліка</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Двигун</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Коробка&nbsp;передач</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Рама та&nbsp;мости</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Система&nbsp;блокувань</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Реальний наробіток&nbsp;мотогодин</li>
+      </ul>
+
+      <a href="#form" class="btn btn-primary mt-9 w-full lg:w-auto justify-center">Замовити перевірку техніки<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-20 md:py-28 border-t border-line">
+  <div class="container-x grid lg:grid-cols-[.8fr_1.2fr] gap-14 items-start">
+    <div class="img-frame aspect-[4/5] reveal">
+      <img src="images/about-portrait.jpg" alt="Денис — засновник DS Motors">
+      <div class="img-mix"></div>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Хто ми</span>
+      <h2 class="h2 mt-5">DS GROUP — понад 12 років підбираємо техніку в&nbsp;Європі</h2>
+      <p class="mt-5 text-dim max-w-2xl">Денис особисто веде кожну угоду: від першого дзвінка до діагностики на місці. Працюємо з приватними забудовниками, будівельними компаніями, підрядниками, орендодавцями спецтехніки, сільгосппідприємцями та тими, хто перепродує техніку. Виключно вживана техніка з ЄС — реальний, підтверджений&nbsp;наробіток.</p>
+
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="surface p-5"><div class="num text-2xl md:text-3xl">12+</div><div class="text-xs text-dim mt-1">років на&nbsp;ринку</div></div>
+        <div class="surface p-5"><div class="num text-2xl md:text-3xl">500+</div><div class="text-xs text-dim mt-1">підібраних&nbsp;одиниць</div></div>
+        <div class="surface p-5"><div class="num text-2xl md:text-3xl">400+</div><div class="text-xs text-dim mt-1">перевірених джерел&nbsp;техніки</div></div>
+        <div class="surface p-5"><div class="num text-2xl md:text-3xl">1000+</div><div class="text-xs text-dim mt-1">клієнтів, скарг&nbsp;немає</div></div>
+        <div class="surface p-5"><div class="num text-2xl md:text-3xl">3–4</div><div class="text-xs text-dim mt-1">угоди&nbsp;щомісяця</div></div>
+        <div class="surface p-5"><div class="num text-2xl md:text-3xl">1–2 дні</div><div class="text-xs text-dim mt-1">на термінові&nbsp;запити</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section id="partners" class="py-16 md:py-20 border-t border-line">
+  <div class="container-x">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 reveal">
+      <div>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Де шукаємо техніку</span>
+        <h2 class="h3 mt-4 max-w-md">400+ перевірених джерел техніки в Європі — окремі партнерства тривають понад 10&nbsp;років</h2>
+      </div>
+      <p class="text-dim text-sm max-w-sm">Провідні майданчики, дилери та власні напрацьовані бази, включно з європейськими забудовниками, що оновлюють&nbsp;автопарк.</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 reveal reveal-delay-1">
+      <div class="partner-card"><img src="images/partners/mascus.png" alt="Mascus"></div>
+      <div class="partner-card">
+        <svg viewBox="0 0 210 44" xmlns="http://www.w3.org/2000/svg" aria-label="Machineryline">
+          <path d="M153.402 41V33.3H154.436V40.098H159.122V41H153.402ZM160.537 41V35.72H161.516V41H160.537ZM160.548 34.367C160.431 34.2497 160.372 34.0957 160.372 33.905C160.372 33.7143 160.431 33.5603 160.548 33.443C160.673 33.3183 160.83 33.256 161.021 33.256C161.212 33.256 161.366 33.3183 161.483 33.443C161.608 33.5603 161.67 33.7143 161.67 33.905C161.67 34.0957 161.608 34.2497 161.483 34.367C161.366 34.4843 161.212 34.543 161.021 34.543C160.83 34.543 160.673 34.4843 160.548 34.367ZM163.475 35.72H164.355L164.421 36.204C164.846 35.8153 165.389 35.621 166.049 35.621C166.804 35.621 167.402 35.8373 167.842 36.27C168.289 36.6953 168.513 37.2783 168.513 38.019V41H167.534V38.019C167.534 37.5423 167.383 37.1683 167.083 36.897C166.789 36.6183 166.39 36.479 165.884 36.479C165.312 36.479 164.835 36.688 164.454 37.106V41H163.475V35.72ZM172.751 35.61C173.573 35.61 174.222 35.896 174.698 36.468C175.175 37.0327 175.384 37.7697 175.325 38.679H171.079C171.175 39.1557 171.42 39.5333 171.816 39.812C172.22 40.0833 172.729 40.219 173.345 40.219C174.057 40.219 174.632 40.032 175.072 39.658V40.582C174.544 40.934 173.917 41.11 173.191 41.11C172.253 41.11 171.497 40.857 170.925 40.351C170.361 39.8377 170.078 39.1593 170.078 38.316C170.078 37.524 170.324 36.875 170.815 36.369C171.314 35.863 171.959 35.61 172.751 35.61ZM171.068 37.876H174.357C174.321 37.4507 174.156 37.1097 173.862 36.853C173.569 36.5963 173.199 36.468 172.751 36.468C172.311 36.468 171.941 36.5963 171.64 36.853C171.34 37.1097 171.149 37.4507 171.068 37.876ZM177.989 41H177.01V35.72H177.89L177.956 36.204C178.359 35.8153 178.876 35.621 179.507 35.621C180.321 35.621 180.933 35.8887 181.344 36.424C181.791 35.8887 182.425 35.621 183.247 35.621C183.965 35.621 184.537 35.83 184.963 36.248C185.395 36.666 185.612 37.2307 185.612 37.942V41H184.633V37.931C184.633 37.4837 184.493 37.1317 184.215 36.875C183.943 36.611 183.573 36.479 183.104 36.479C182.517 36.479 182.051 36.7063 181.707 37.161C181.773 37.403 181.806 37.6633 181.806 37.942V41H180.816V37.931C180.816 37.4837 180.68 37.1317 180.409 36.875C180.137 36.611 179.771 36.479 179.309 36.479C178.773 36.479 178.333 36.688 177.989 37.106V41ZM189.842 35.61C190.663 35.61 191.312 35.896 191.789 36.468C192.265 37.0327 192.474 37.7697 192.416 38.679H188.17C188.265 39.1557 188.511 39.5333 188.907 39.812C189.31 40.0833 189.82 40.219 190.436 40.219C191.147 40.219 191.723 40.032 192.163 39.658V40.582C191.635 40.934 191.008 41.11 190.282 41.11C189.343 41.11 188.588 40.857 188.016 40.351C187.451 39.8377 187.169 39.1593 187.169 38.316C187.169 37.524 187.414 36.875 187.906 36.369C188.404 35.863 189.05 35.61 189.842 35.61ZM188.159 37.876H191.448C191.411 37.4507 191.246 37.1097 190.953 36.853C190.659 36.5963 190.289 36.468 189.842 36.468C189.402 36.468 189.031 36.5963 188.731 36.853C188.43 37.1097 188.239 37.4507 188.159 37.876ZM193.759 38.349C193.759 37.5497 194.008 36.9007 194.507 36.402C195.006 35.896 195.655 35.643 196.454 35.643C197.011 35.643 197.484 35.7677 197.873 36.017V33.08H198.863V41H197.983L197.939 40.659C197.528 40.9377 197.033 41.077 196.454 41.077C195.655 41.077 195.006 40.824 194.507 40.318C194.008 39.812 193.759 39.1557 193.759 38.349ZM196.619 36.501C196.076 36.501 195.633 36.6733 195.288 37.018C194.943 37.3627 194.771 37.81 194.771 38.36C194.771 38.91 194.943 39.3573 195.288 39.702C195.633 40.0467 196.076 40.219 196.619 40.219C197.125 40.219 197.543 40.0723 197.873 39.779V36.941C197.543 36.6477 197.125 36.501 196.619 36.501ZM200.819 41V35.72H201.798V41H200.819ZM200.83 34.367C200.713 34.2497 200.654 34.0957 200.654 33.905C200.654 33.7143 200.713 33.5603 200.83 33.443C200.955 33.3183 201.112 33.256 201.303 33.256C201.494 33.256 201.648 33.3183 201.765 33.443C201.89 33.5603 201.952 33.7143 201.952 33.905C201.952 34.0957 201.89 34.2497 201.765 34.367C201.648 34.4843 201.494 34.543 201.303 34.543C201.112 34.543 200.955 34.4843 200.83 34.367ZM205.539 41.077C204.886 41.077 204.373 40.9377 203.999 40.659C203.625 40.373 203.438 39.988 203.438 39.504C203.438 38.9907 203.647 38.5873 204.065 38.294C204.483 38.0007 205.062 37.854 205.803 37.854C206.14 37.854 206.558 37.8907 207.057 37.964V37.689C207.057 36.9117 206.532 36.523 205.484 36.523C204.787 36.523 204.241 36.6807 203.845 36.996V36.105C204.321 35.797 204.926 35.643 205.66 35.643C206.43 35.643 207.02 35.8117 207.431 36.149C207.841 36.479 208.047 36.9557 208.047 37.579V39.834C208.047 40.1567 208.267 40.318 208.707 40.318V40.967C208.575 41.033 208.406 41.066 208.201 41.066C207.753 41.066 207.423 40.9083 207.211 40.593C206.756 40.9157 206.199 41.077 205.539 41.077ZM206.001 38.657C205.509 38.657 205.124 38.734 204.846 38.888C204.567 39.0347 204.428 39.2363 204.428 39.493C204.428 39.7277 204.538 39.9147 204.758 40.054C204.985 40.186 205.297 40.252 205.693 40.252C206.25 40.252 206.705 40.0907 207.057 39.768V38.756C206.58 38.69 206.228 38.657 206.001 38.657Z" fill="#6b6560"/>
+          <path d="M164.004 3V26.2726H159.637V3.95641L164.004 3Z" fill="#F27349"/>
+          <path d="M167.803 26.2726V10.9701H172.266V26.2726H167.803ZM167.356 5.90111C167.356 5.13598 167.601 4.509 168.089 4.02017C168.6 3.53134 169.248 3.28692 170.034 3.28692C170.821 3.28692 171.458 3.53134 171.947 4.02017C172.436 4.509 172.68 5.13598 172.68 5.90111C172.68 6.68749 172.436 7.3251 171.947 7.81393C171.458 8.30276 170.821 8.54718 170.034 8.54718C169.248 8.54718 168.6 8.30276 168.089 7.81393C167.601 7.3251 167.356 6.68749 167.356 5.90111Z" fill="#F27349"/>
+          <path d="M176.154 10.9701H180.107L180.298 11.8946C181.403 11.0445 182.774 10.6194 184.411 10.6194C186.621 10.6194 188.364 11.2464 189.639 12.5003C190.914 13.7543 191.552 15.4652 191.552 17.6331V26.2726H187.089V17.6012C187.089 16.6235 186.77 15.8584 186.132 15.3058C185.495 14.732 184.634 14.445 183.55 14.445C182.36 14.445 181.382 14.8595 180.617 15.6884V26.2726H176.154V10.9701Z" fill="#F27349"/>
+          <path d="M202.45 10.5556C204.979 10.5556 206.935 11.427 208.316 13.1698C209.697 14.8914 210.229 17.1549 209.91 19.9603H199.198C199.581 20.8317 200.25 21.5118 201.207 22.0007C202.184 22.4683 203.364 22.702 204.745 22.702C206.594 22.702 208.093 22.277 209.241 21.4268V25.38C207.732 26.2514 205.967 26.6871 203.948 26.6871C201.079 26.6871 198.784 25.9432 197.062 24.4555C195.362 22.9677 194.512 20.9805 194.512 18.4938C194.512 16.1772 195.245 14.275 196.712 12.7873C198.178 11.2995 200.091 10.5556 202.45 10.5556ZM199.039 16.8998H205.574C205.489 16.1134 205.16 15.4971 204.586 15.0508C204.033 14.5832 203.332 14.3494 202.482 14.3494C201.653 14.3494 200.93 14.5832 200.314 15.0508C199.698 15.4971 199.273 16.1134 199.039 16.8998Z" fill="#F27349"/>
+          <path d="M0 26.6074C10.2295 25.6775 16.0141 25.1476 26.2436 24.2177V29.0082H0V26.6074Z" fill="#F27349"/>
+          <path d="M63.8107 3.95288L68.2739 3.00012V11.6717C69.2941 10.9703 70.5587 10.6196 72.0676 10.6196C74.278 10.6196 76.0208 11.2466 77.296 12.5006C78.5712 13.7545 79.2088 15.4654 79.2088 17.6333V26.2729H74.7456V17.6014C74.7456 16.6237 74.4268 15.8586 73.7892 15.306C73.1516 14.7322 72.2908 14.4453 71.2069 14.4453C70.0167 14.4453 69.039 14.8597 68.2739 15.6886V26.2729H63.8107V3.95288Z" fill="#171512"/>
+          <path d="M0.00390625 24.2062L4.7222 23.7773V13.7553L11.0268 23.2041L15.5342 22.7944L21.5231 13.7872V22.2499L26.2414 21.821V3.92475H23.0183L13.1386 18.6853L3.22409 3.95663H0.00390625V24.2062Z" fill="#171512"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M35.9674 26.5598C34.0333 26.5598 32.5031 26.1347 31.3766 25.2846C30.2715 24.4132 29.7189 23.2442 29.7189 21.7777C29.7189 20.2687 30.3033 19.0892 31.4723 18.239C32.6625 17.3889 34.299 16.9638 36.3819 16.9638C37.232 16.9638 38.2309 17.0594 39.3786 17.2507V16.8044C39.3786 16.0605 39.0386 15.4973 38.3584 15.1147C37.6996 14.7109 36.7538 14.509 35.5211 14.509C33.6295 14.509 32.1418 14.9235 31.0578 15.7524V11.8311C32.5243 11.0022 34.3096 10.5877 36.4137 10.5877C38.7729 10.5877 40.6007 11.0872 41.8972 12.0861C43.1936 13.085 43.8419 14.4878 43.8419 16.2943V21.9371C43.8419 22.8298 44.4157 23.2761 45.5634 23.2761V26.1135C45.0958 26.3898 44.437 26.5279 43.5868 26.5279C42.2478 26.5279 41.1745 26.1241 40.3669 25.3165C39.2405 26.1453 37.774 26.5598 35.9674 26.5598ZM37.3701 20.0562C36.3712 20.0562 35.5849 20.205 35.011 20.5025C34.4584 20.7788 34.1821 21.172 34.1821 21.6821C34.1821 22.1284 34.4159 22.4791 34.8835 22.7341C35.3511 22.9679 35.978 23.0848 36.7644 23.0848C37.8696 23.0848 38.741 22.7873 39.3786 22.1922V20.2794C38.571 20.1306 37.9015 20.0562 37.3701 20.0562Z" fill="#171512"/>
+          <path d="M49.801 24.4557C51.395 25.9434 53.4566 26.6873 55.9858 26.6873C57.601 26.6873 59.0675 26.3472 60.3853 25.6671V21.6183C59.4501 22.3835 58.2812 22.766 56.8784 22.766C55.4332 22.766 54.2536 22.3835 53.3397 21.6183C52.4471 20.8532 52.0007 19.8543 52.0007 18.6216C52.0007 17.3889 52.4471 16.39 53.3397 15.6248C54.2536 14.8597 55.4332 14.4771 56.8784 14.4771C58.2812 14.4771 59.4501 14.8597 60.3853 15.6248V11.576C59.0675 10.8959 57.601 10.5559 55.9858 10.5559C53.4566 10.5559 51.395 11.3104 49.801 12.8194C48.207 14.3071 47.41 16.2412 47.41 18.6216C47.41 21.002 48.207 22.9467 49.801 24.4557Z" fill="#171512"/>
+          <path d="M82.9339 10.9703V26.2729H87.3971V10.9703H82.9339Z" fill="#171512"/>
+          <path d="M83.2208 4.02039C82.732 4.50922 82.4875 5.1362 82.4875 5.90133C82.4875 6.68771 82.732 7.32532 83.2208 7.81415C83.7309 8.30298 84.3791 8.5474 85.1655 8.5474C85.9519 8.5474 86.5895 8.30298 87.0783 7.81415C87.5672 7.32532 87.8116 6.68771 87.8116 5.90133C87.8116 5.1362 87.5672 4.50922 87.0783 4.02039C86.5895 3.53156 85.9519 3.28714 85.1655 3.28714C84.3791 3.28714 83.7309 3.53156 83.2208 4.02039Z" fill="#171512"/>
+          <path d="M91.285 10.9703H95.2382L95.4295 11.8948C96.5347 11.0447 97.9055 10.6196 99.542 10.6196C101.752 10.6196 103.495 11.2466 104.77 12.5006C106.046 13.7545 106.683 15.4654 106.683 17.6333V26.2729H102.22V17.6014C102.22 16.6237 101.901 15.8586 101.264 15.306C100.626 14.7322 99.7652 14.4453 98.6813 14.4453C97.4911 14.4453 96.5134 14.8597 95.7483 15.6886V26.2729H91.285V10.9703Z" fill="#171512"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M123.447 13.17C122.066 11.4273 120.11 10.5559 117.581 10.5559C115.222 10.5559 113.309 11.2997 111.843 12.7875C110.376 14.2752 109.643 16.1774 109.643 18.4941C109.643 20.9807 110.493 22.9679 112.194 24.4557C113.915 25.9434 116.21 26.6873 119.08 26.6873C121.099 26.6873 122.863 26.2516 124.372 25.3802V21.427C123.224 22.2772 121.726 22.7023 119.877 22.7023C118.495 22.7023 117.316 22.4685 116.338 22.0009C115.382 21.5121 114.712 20.832 114.33 19.9606H125.041C125.36 17.1551 124.829 14.8916 123.447 13.17ZM120.706 16.9H114.17C114.404 16.1137 114.829 15.4973 115.445 15.051C116.062 14.5834 116.784 14.3496 117.613 14.3496C118.463 14.3496 119.165 14.5834 119.717 15.051C120.291 15.4973 120.621 16.1137 120.706 16.9Z" fill="#171512"/>
+          <path d="M128.411 26.2729V10.9703H132.364L132.587 12.2774C133.65 11.1722 135.074 10.6196 136.859 10.6196C137.39 10.6196 137.922 10.6728 138.453 10.779V15.051C137.837 14.6472 137.05 14.4453 136.094 14.4453C134.776 14.4453 133.703 14.9553 132.874 15.9755V26.2729H128.411Z" fill="#171512"/>
+          <path d="M139.589 10.9703L146.22 24.0412L141.438 32.6489H146.252L157.219 10.9703H152.5L148.42 19.4186L144.307 10.9703H139.589Z" fill="#171512"/>
+        </svg>
+      </div>
+      <div class="partner-card"><img src="images/partners/autoria.png" alt="Auto.ria"></div>
+      <div class="partner-card"><img src="images/partners/cat.png" alt="CAT"></div>
+      <div class="partner-card"><img src="images/partners/jcb.png" alt="JCB"></div>
+      <div class="partner-card"><img src="images/partners/liebherr.png" alt="Liebherr"></div>
+      <div class="partner-card"><img src="images/partners/volvo.png" alt="Volvo"></div>
+      <div class="partner-card">
+        <svg viewBox="0 0 170 34" xmlns="http://www.w3.org/2000/svg" aria-label="Komatsu">
+          <path d="M159 33.2c-2.9.1-5.7-.7-7.9-2.5-2.1-1.9-3.2-4.6-3-7.4v-15h9.7v15c0 .7.6 1.3 1.3 1.3.7 0 1.2-.6 1.3-1.3v-15h9.7v15c0 3.2-1 5.7-3 7.4-2.4 1.8-5.3 2.7-8.1 2.5zm-121.3 0c-7-.1-12.7-5.8-12.6-12.9-.2-7 5.4-12.8 12.4-12.9 7-.2 12.8 5.4 12.9 12.4v.6c0 3.4-1.3 6.7-3.7 9.1-2.4 2.4-5.6 3.7-9 3.7zm0-16.5c-2 0-3.7 1.6-3.7 3.6s1.6 3.7 3.6 3.7 3.7-1.6 3.7-3.6v-.1c0-2-1.6-3.6-3.6-3.6zm97.6 16.5c-4.1 0-6.9-1.2-10.4-3.2l2.7-6.4s4 2.6 6.7 2.6c.3 0 .6 0 .9-.1.5-.1.8-.5.8-1s-.2-.9-.7-1.1c-.5-.2-1.1-.4-1.6-.5-1.9-.5-4.9-1.2-6.4-4.1-1.7-3.2-1-7.1 1.7-9.4 2.1-1.7 4.7-2.6 7.4-2.6h.5c3 .1 5.9 1 8.5 2.7l-2.7 6.4c-1.8-1-4.2-2.1-5.7-2.1-.8 0-1.2.3-1.3.9-.1.9.8 1.2 2.3 1.6 1.3.3 2.5.7 3.7 1.3 2.9 1.7 4.4 5.1 3.5 8.4-.4 1.9-1.5 3.5-3.1 4.6-1.9 1.4-4.3 2.1-6.8 2zM9.8 32.3H0V8.4h9.8V20L15 8.4h11.1l-5.6 11.7 5.9 12.2H15.3L9.8 20.1v12.2zm50 0H51l3.6-23.9h8.9l3 9.6 3-9.6h8.9l3.3 22.5 7.6-22.5H99l8.2 23.9H97L94.1 21l-2.9 11.3H73l-1.3-9.1-2.5 9.1h-5.7L61 23.2l-1.2 9.1zm60 0H110v-15h-5.7V8.4h15.4V.8h9.1v9.5h-9.1l.1 22z" fill="#140a9a"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section id="cases" class="py-20 md:py-28 border-t border-line overflow-x-hidden">
+  <div class="container-x">
+    <div class="max-w-2xl reveal">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Кейси</span>
+      <h2 class="h2 mt-5">Реальні угоди з реальними&nbsp;цифрами</h2>
+    </div>
+
+    <div class="mt-14 reveal reveal-delay-1">
+      <div class="cases-track" id="casesTrack">
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-cat432f2.jpg" alt="CAT 432F2"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Нідерланди</p>
+              <p class="h3 mt-2">CAT 432F2, 2017 р., 5100 год&nbsp;напрацювання</p>
+              <p class="text-dim text-sm mt-3">Виїзд до Нідерландів, повна діагностика — стріла, двигун, коробка передач, рама, мости, блокування. Клієнт отримав детальний звіт і залишився&nbsp;задоволений.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-cat950m.jpg" alt="CAT 950M"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Німеччина</p>
+              <p class="h3 mt-2">CAT 950M, фронтальний&nbsp;навантажувач</p>
+              <p class="text-dim text-sm mt-3">Перевірили гідравліку піднімання та знос коша прямо на майданчику дилера. Клієнт отримав машину без прихованих дефектів менш ніж за&nbsp;тиждень.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-catm315d.jpg" alt="CAT M315D"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Бельгія</p>
+              <p class="h3 mt-2">CAT M315D, колісний&nbsp;екскаватор</p>
+              <p class="text-dim text-sm mt-3">Особистий огляд перед торгами: ходова, гідравлічний насос, поворотна платформа. Угоду закрили того ж дня, без&nbsp;переплати.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-doosan-dx140lcr.jpg" alt="DOOSAN DX140 LCR"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Польща</p>
+              <p class="h3 mt-2">DOOSAN DX140 LCR, малий&nbsp;виліт</p>
+              <p class="text-dim text-sm mt-3">Клієнту потрібна була компактна модель для роботи в стисненому просторі. Перевірили ущільнення й ходову, організували доставку до&nbsp;Києва.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-doosan-dx170w.jpg" alt="DOOSAN DX170W"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Нідерланди</p>
+              <p class="h3 mt-2">DOOSAN DX170W, колісний&nbsp;екскаватор</p>
+              <p class="text-dim text-sm mt-3">Оглянули двигун і трансмісію на майданчику продавця, звірили мотогодини з сервісною книжкою. Клієнт заощадив близько 20% від ринкової ціни в&nbsp;Україні.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-ditchwitch-jt922.jpg" alt="Ditch Witch JT922"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Німеччина</p>
+              <p class="h3 mt-2">Ditch Witch JT922, установка&nbsp;ГНБ</p>
+              <p class="text-dim text-sm mt-3">Рідкісна позиція для горизонтально-спрямованого буріння — знайшли за 12 днів пошуку по закритих майданчиках і дилерських&nbsp;базах.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-hitachi-zx225us.jpg" alt="HITACHI ZAXIS 225 US"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Нідерланди</p>
+              <p class="h3 mt-2">HITACHI ZAXIS 225 US, короткий&nbsp;хвіст</p>
+              <p class="text-dim text-sm mt-3">Перевірили ківш, гідроциліндри та раму на предмет тріщин і зварювання. Клієнт отримав повний фотозвіт ще до рішення про&nbsp;покупку.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-jcb-3dx.jpg" alt="JCB 3DX"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Нідерланди</p>
+              <p class="h3 mt-2">JCB 3DX, екскаватор-навантажувач&nbsp;4х4</p>
+              <p class="text-dim text-sm mt-3">Перевірили задній міст, зчеплення та роботу стріли під навантаженням перед покупкою — класика в справному&nbsp;стані.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-jcb-8050ts.jpg" alt="JCB 8050 TS"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Литва</p>
+              <p class="h3 mt-2">JCB 8050 TS,&nbsp;міні-екскаватор</p>
+              <p class="text-dim text-sm mt-3">Компактна машина для приватного забудовника. Оглянули гусениці, ущільнення кабіни та роботу поворотного ковша — все відповідало&nbsp;опису.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-jcb-js160lc.jpg" alt="JCB JS160 LC"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Німеччина</p>
+              <p class="h3 mt-2">JCB JS160 LC, гусеничний&nbsp;екскаватор</p>
+              <p class="text-dim text-sm mt-3">Клієнт шукав техніку під конкретний проєкт з дедлайном. Знайшли, перевірили і доставили за 9 днів від заявки до&nbsp;майданчика.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-jcb-jc220lc.jpg" alt="JCB JC220 LC"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Нідерланди</p>
+              <p class="h3 mt-2">JCB JC220 LC, гусеничний&nbsp;екскаватор</p>
+              <p class="text-dim text-sm mt-3">Повна перевірка двигуна та гідравліки на місці, включно з ендоскопією вузлів без розбирання. Клієнт отримав звіт з фото до&nbsp;оплати.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="surface surface-hover overflow-hidden h-full flex flex-col">
+            <div class="img-frame aspect-[4/3] rounded-b-none"><img src="images/cases/case-liebherr-914.jpg" alt="Liebherr 914 Compact"><div class="img-mix"></div></div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="eyebrow text-yellow text-xs">Німеччина</p>
+              <p class="h3 mt-2">Liebherr 914 Compact, з&nbsp;тілтротатором</p>
+              <p class="text-dim text-sm mt-3">Машина для комунальних робіт. Перевірили гідравлічне з'єднання навісного обладнання та стан шин перед&nbsp;покупкою.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex items-center gap-6">
+        <div class="cases-progress-track"><div class="cases-progress-fill" id="casesProgress"></div></div>
+        <div class="flex gap-3 shrink-0">
+          <button type="button" class="slider-arrow" id="casesPrev" aria-label="Попередній кейс"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button type="button" class="slider-arrow" id="casesNext" aria-label="Наступний кейс"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center reveal">
+      <a href="#form" class="btn btn-primary w-full lg:w-auto justify-center">Хочу такий самий результат<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEEDBACK / LEAD FORM ============ -->
+<section id="form" class="py-20 md:py-28 border-t border-line relative overflow-hidden">
+  <div class="glow w-[30rem] h-[30rem] bg-yellow/8 top-0 right-0"></div>
+  <div class="container-x relative grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Залишити заявку</span>
+      <h2 class="h2 mt-5">Розкажіть, яка техніка вам&nbsp;потрібна</h2>
+      <p class="mt-5 text-dim max-w-md">Ми особисто зателефонуємо, обговоримо задачу і запропонуємо кілька варіантів техніки на вибір — без&nbsp;зобов'язань.</p>
+
+      <ul class="checklist mt-8 space-y-3.5 text-sm text-dim">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Відповідаємо особисто — без колл-центру та&nbsp;спаму</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Консультація та підбір варіантів —&nbsp;безкоштовно</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Середній термін підбору — до 1&nbsp;тижня</li>
+      </ul>
+    </div>
+
+    <form id="leadForm" class="surface reveal reveal-delay-2 p-7 md:p-9 space-y-4">
+      <div id="formSuccess" class="hidden text-center py-10">
+        <div class="w-14 h-14 rounded-full bg-yellow/15 text-yellow flex items-center justify-center mx-auto"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+        <p class="h3 mt-5">Заявку&nbsp;надіслано</p>
+        <p class="text-dim text-sm mt-2">Ми зателефонуємо вам найближчим&nbsp;часом.</p>
+      </div>
+
+      <div id="formFields" class="space-y-4">
+        <div>
+          <label class="text-xs text-dim block mb-2">Ім'я</label>
+          <input type="text" required class="field" placeholder="Як до вас звертатись">
+        </div>
+        <div>
+          <label class="text-xs text-dim block mb-2">Телефон</label>
+          <input type="tel" required class="field" placeholder="+380 __ ___ __ __">
+        </div>
+        <div>
+          <label class="text-xs text-dim block mb-2">Яку техніку&nbsp;шукаєте</label>
+          <select class="field" required>
+            <option value="" disabled selected>Оберіть категорію</option>
+            <option>Екскаватор / міні-екскаватор</option>
+            <option>Телескопічний навантажувач</option>
+            <option>Самоскид</option>
+            <option>Трактор / сільгосптехніка</option>
+            <option>Баштовий кран</option>
+            <option>Інше</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-dim block mb-2">Коментар <span class="text-dim/60">(необов'язково)</span></label>
+          <textarea rows="3" class="field resize-none" placeholder="Модель, рік, бюджет — будь-які деталі"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-full justify-center">Надіслати заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
+        <p class="text-xs text-dim/70 text-center pt-1">Натискаючи кнопку, ви погоджуєтесь на обробку персональних&nbsp;даних.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ CONTACTS / FOOTER ============ -->
+<footer id="contacts" class="border-t border-line pt-16 pb-8">
+  <div class="container-x">
+    <div class="grid md:grid-cols-[1.2fr_.8fr_.8fr] gap-12">
+      <div>
+        <a href="#hero" class="flex items-center gap-3">
+          <img src="images/logo.jpg" alt="DS Motors" class="w-11 h-11 rounded-xl object-cover">
+          <span class="font-display font-bold text-lg">DS MOTORS</span>
+        </a>
+        <p class="text-dim text-sm mt-5 max-w-xs">Підбір, перевірка та доставка вживаної будівельної техніки з&nbsp;Європи. Ми — DS&nbsp;GROUP.</p>
+      </div>
+
+      <div>
+        <p class="eyebrow text-dim">Контакти</p>
+        <div class="mt-4 space-y-3 text-sm">
+          <a href="tel:+48798586775" class="flex items-center gap-3 hover:text-yellow transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg>+48 798 586 775</a>
+          <a href="mailto:dsmotors.office@gmail.com" class="flex items-center gap-3 hover:text-yellow transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>dsmotors.office@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow text-dim">Навігація</p>
+        <div class="mt-4 flex flex-col gap-2.5 text-sm text-dim">
+          <a href="#equipment" class="hover:text-ink transition-colors w-fit">Техніка</a>
+          <a href="#service" class="hover:text-ink transition-colors w-fit">Послуги</a>
+          <a href="#cases" class="hover:text-ink transition-colors w-fit">Кейси</a>
+          <a href="#form" class="hover:text-ink transition-colors w-fit">Залишити&nbsp;заявку</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hairline mt-12 pt-6 flex flex-col sm:flex-row justify-between gap-3 text-xs text-dim/70">
+      <p>© 2026 DS&nbsp;MOTORS (DS&nbsp;GROUP). Усі права&nbsp;захищено.</p>
+      <p>Працюємо з клієнтами по всій&nbsp;Україні. Виїзди на діагностику — по всій&nbsp;Європі.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const setMenu = (open) => {
+    mobileNav.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  menuBtn.addEventListener('click', () => setMenu(!mobileNav.classList.contains('open')));
+  document.querySelectorAll('.mnav-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // steps rail: progressive line fill + active marker, tracked to scroll position
+  const stepsRail = document.getElementById('stepsRail');
+  const stepsFill = document.getElementById('stepsTrackFill');
+  if (stepsRail && stepsFill) {
+    const stepItems = Array.from(stepsRail.querySelectorAll('.step-item'));
+    let ticking = false;
+
+    const updateRail = () => {
+      ticking = false;
+      const rect = stepsRail.getBoundingClientRect();
+      const railHeight = rect.height || 1;
+      const viewportAnchor = window.innerHeight * 0.55;
+      const progress = Math.min(1, Math.max(0, (viewportAnchor - rect.top) / railHeight));
+      stepsFill.style.transform = `scaleY(${progress})`;
+
+      stepItems.forEach((item) => {
+        const markerOffset = item.offsetTop / railHeight;
+        item.classList.toggle('active', progress >= markerOffset - 0.02);
+      });
+    };
+
+    const onScroll = () => {
+      if (!ticking) { requestAnimationFrame(updateRail); ticking = true; }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateRail();
+  }
+
+  // cases slider
+  const casesTrack = document.getElementById('casesTrack');
+  const casesProgress = document.getElementById('casesProgress');
+  const casesPrev = document.getElementById('casesPrev');
+  const casesNext = document.getElementById('casesNext');
+  if (casesTrack && casesProgress) {
+    const updateCasesUI = () => {
+      const max = casesTrack.scrollWidth - casesTrack.clientWidth;
+      const progress = max > 0 ? casesTrack.scrollLeft / max : 0;
+      casesProgress.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+      casesPrev.disabled = casesTrack.scrollLeft <= 4;
+      casesNext.disabled = casesTrack.scrollLeft >= max - 4;
+    };
+
+    const scrollByCard = (dir) => {
+      const card = casesTrack.querySelector('.case-card');
+      const gap = parseFloat(getComputedStyle(casesTrack).gap) || 24;
+      const step = (card ? card.getBoundingClientRect().width : casesTrack.clientWidth) + gap;
+      casesTrack.scrollBy({ left: dir * step, behavior: 'smooth' });
+    };
+
+    casesPrev.addEventListener('click', () => scrollByCard(-1));
+    casesNext.addEventListener('click', () => scrollByCard(1));
+
+    let casesTicking = false;
+    casesTrack.addEventListener('scroll', () => {
+      if (!casesTicking) { requestAnimationFrame(() => { updateCasesUI(); casesTicking = false; }); casesTicking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', updateCasesUI);
+    updateCasesUI();
+  }
+
+  // lead form
+  const form = document.getElementById('leadForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('formFields').classList.add('hidden');
+    document.getElementById('formSuccess').classList.remove('hidden');
+  });
+</script>
+</body>
+</html>
