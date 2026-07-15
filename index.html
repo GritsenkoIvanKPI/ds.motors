@@ -142,6 +142,7 @@
   .img-mix{ position:absolute; inset:0; background:#f5c21d; mix-blend-mode:multiply; opacity:.08; pointer-events:none; }
 
   /* video player */
+  #aboutVideo{ cursor:pointer; }
   .video-play-btn{
     position:absolute; inset:0; margin:auto; width:4.5rem; height:4.5rem; border-radius:999px;
     display:flex; align-items:center; justify-content:center;
@@ -986,31 +987,39 @@
     const unmutedIcon = '<path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"/><path d="M16.5 8.5a5 5 0 010 7"/>';
     const mutedIcon = '<path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"/><path d="M15.5 9.5l4 4M19.5 9.5l-4 4"/>';
 
+    let hasStarted = false;
+
+    const playVideo = () => {
+      if (!hasStarted) {
+        aboutVideo.muted = false;
+        hasStarted = true;
+      }
+      aboutVideo.play();
+      videoPlayBtn.classList.add('is-hidden');
+      videoControls.classList.add('is-visible');
+      videoPauseIcon.innerHTML = pauseIcon;
+      videoPauseBtn.setAttribute('aria-label', 'Пауза');
+    };
+
+    const pauseVideo = () => {
+      aboutVideo.pause();
+      videoPauseIcon.innerHTML = playIcon;
+      videoPauseBtn.setAttribute('aria-label', 'Відтворити');
+    };
+
+    const togglePlayback = () => { aboutVideo.paused ? playVideo() : pauseVideo(); };
+
     const resetPlayer = () => {
+      hasStarted = false;
       videoPlayBtn.classList.remove('is-hidden');
       videoControls.classList.remove('is-visible');
       videoPauseIcon.innerHTML = pauseIcon;
       videoPauseBtn.setAttribute('aria-label', 'Пауза');
     };
 
-    videoPlayBtn.addEventListener('click', () => {
-      aboutVideo.muted = false;
-      aboutVideo.play();
-      videoPlayBtn.classList.add('is-hidden');
-      videoControls.classList.add('is-visible');
-    });
-
-    videoPauseBtn.addEventListener('click', () => {
-      if (aboutVideo.paused) {
-        aboutVideo.play();
-        videoPauseIcon.innerHTML = pauseIcon;
-        videoPauseBtn.setAttribute('aria-label', 'Пауза');
-      } else {
-        aboutVideo.pause();
-        videoPauseIcon.innerHTML = playIcon;
-        videoPauseBtn.setAttribute('aria-label', 'Відтворити');
-      }
-    });
+    videoPlayBtn.addEventListener('click', playVideo);
+    videoPauseBtn.addEventListener('click', togglePlayback);
+    aboutVideo.addEventListener('click', togglePlayback);
 
     videoMuteBtn.addEventListener('click', () => {
       aboutVideo.muted = !aboutVideo.muted;
