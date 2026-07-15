@@ -978,6 +978,8 @@
   const videoControls = document.getElementById('videoControls');
   const videoPauseBtn = document.getElementById('videoPauseBtn');
   const videoMuteBtn = document.getElementById('videoMuteBtn');
+  const videoPauseIcon = document.getElementById('videoPauseIcon');
+  const videoMuteIcon = document.getElementById('videoMuteIcon');
   if (aboutVideo && videoPlayBtn) {
     const pauseIcon = '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>';
     const playIcon = '<path d="M8 5v14l11-7z"/>';
@@ -987,7 +989,7 @@
     const resetPlayer = () => {
       videoPlayBtn.classList.remove('is-hidden');
       videoControls.classList.remove('is-visible');
-      videoPauseBtn.innerHTML = pauseIcon;
+      videoPauseIcon.innerHTML = pauseIcon;
       videoPauseBtn.setAttribute('aria-label', 'Пауза');
     };
 
@@ -1001,18 +1003,18 @@
     videoPauseBtn.addEventListener('click', () => {
       if (aboutVideo.paused) {
         aboutVideo.play();
-        videoPauseBtn.innerHTML = pauseIcon;
+        videoPauseIcon.innerHTML = pauseIcon;
         videoPauseBtn.setAttribute('aria-label', 'Пауза');
       } else {
         aboutVideo.pause();
-        videoPauseBtn.innerHTML = playIcon;
+        videoPauseIcon.innerHTML = playIcon;
         videoPauseBtn.setAttribute('aria-label', 'Відтворити');
       }
     });
 
     videoMuteBtn.addEventListener('click', () => {
       aboutVideo.muted = !aboutVideo.muted;
-      videoMuteBtn.innerHTML = aboutVideo.muted ? mutedIcon : unmutedIcon;
+      videoMuteIcon.innerHTML = aboutVideo.muted ? mutedIcon : unmutedIcon;
       videoMuteBtn.setAttribute('aria-label', aboutVideo.muted ? 'Увімкнути звук' : 'Вимкнути звук');
     });
 
