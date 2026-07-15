@@ -136,10 +136,41 @@
 
   /* image treatment */
   .img-frame{ position:relative; overflow:hidden; border-radius:1.4rem; }
-  .img-frame img{ display:block; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.16,1,.3,1); }
-  .img-frame:hover img{ transform:scale(1.045); }
+  .img-frame img, .img-frame video{ display:block; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.16,1,.3,1); }
+  .img-frame:hover img, .img-frame:hover video{ transform:scale(1.045); }
   .img-tint{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,17,16,0) 40%, rgba(18,17,16,.85) 100%); }
   .img-mix{ position:absolute; inset:0; background:#f5c21d; mix-blend-mode:multiply; opacity:.08; pointer-events:none; }
+
+  /* video player */
+  .video-play-btn{
+    position:absolute; inset:0; margin:auto; width:4.5rem; height:4.5rem; border-radius:999px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--yellow); color:#161410; border:none; cursor:pointer; z-index:3;
+    box-shadow:0 20px 45px -12px rgba(245,194,29,.55);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, opacity .35s ease;
+  }
+  .video-play-btn:hover{ transform:scale(1.08); }
+  .video-play-btn:active{ transform:scale(.94); }
+  .video-play-btn:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
+  .video-play-btn svg{ width:22px; height:22px; margin-left:3px; }
+  .video-play-btn.is-hidden{ opacity:0; pointer-events:none; transform:scale(.85); }
+
+  .video-controls{
+    position:absolute; left:1rem; bottom:1rem; display:flex; gap:.6rem; z-index:3;
+    opacity:0; pointer-events:none; transition:opacity .35s ease;
+  }
+  .video-controls.is-visible{ opacity:1; pointer-events:auto; }
+  .video-control-btn{
+    width:2.5rem; height:2.5rem; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(18,17,16,.72); backdrop-filter:blur(6px); color:var(--ink);
+    border:1px solid rgba(244,240,230,.15);
+    transition:background .3s ease, transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .video-control-btn:hover{ background:rgba(18,17,16,.92); }
+  .video-control-btn:active{ transform:scale(.92); }
+  .video-control-btn:focus-visible{ outline:2px solid var(--yellow); outline-offset:2px; }
+  .video-control-btn svg{ width:16px; height:16px; }
 
   /* mobile nav */
   .mobile-nav{ transform:translateY(-100%); transition:transform .5s cubic-bezier(.16,1,.3,1); }
@@ -597,8 +628,19 @@
 <section id="about" class="py-20 md:py-28 border-t border-line">
   <div class="container-x grid lg:grid-cols-[.8fr_1.2fr] gap-14 items-start">
     <div class="img-frame aspect-[4/5] reveal">
-      <img src="images/about-portrait.jpg" alt="Денис — засновник DS Motors">
+      <video id="aboutVideo" poster="images/about-portrait.jpg" playsinline preload="metadata" src="videos/about.mp4"></video>
       <div class="img-mix"></div>
+      <button type="button" class="video-play-btn" id="videoPlayBtn" aria-label="Відтворити відео">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="video-controls" id="videoControls">
+        <button type="button" class="video-control-btn" id="videoPauseBtn" aria-label="Пауза">
+          <svg viewBox="0 0 24 24" fill="currentColor" id="videoPauseIcon"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+        <button type="button" class="video-control-btn" id="videoMuteBtn" aria-label="Вимкнути звук">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="videoMuteIcon"><path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"/><path d="M16.5 8.5a5 5 0 010 7"/></svg>
+        </button>
+      </div>
     </div>
 
     <div class="reveal reveal-delay-2">
@@ -929,6 +971,56 @@
   };
   menuBtn.addEventListener('click', () => setMenu(!mobileNav.classList.contains('open')));
   document.querySelectorAll('.mnav-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // about video: custom player
+  const aboutVideo = document.getElementById('aboutVideo');
+  const videoPlayBtn = document.getElementById('videoPlayBtn');
+  const videoControls = document.getElementById('videoControls');
+  const videoPauseBtn = document.getElementById('videoPauseBtn');
+  const videoMuteBtn = document.getElementById('videoMuteBtn');
+  if (aboutVideo && videoPlayBtn) {
+    const pauseIcon = '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>';
+    const playIcon = '<path d="M8 5v14l11-7z"/>';
+    const unmutedIcon = '<path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"/><path d="M16.5 8.5a5 5 0 010 7"/>';
+    const mutedIcon = '<path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"/><path d="M15.5 9.5l4 4M19.5 9.5l-4 4"/>';
+
+    const resetPlayer = () => {
+      videoPlayBtn.classList.remove('is-hidden');
+      videoControls.classList.remove('is-visible');
+      videoPauseBtn.innerHTML = pauseIcon;
+      videoPauseBtn.setAttribute('aria-label', 'Пауза');
+    };
+
+    videoPlayBtn.addEventListener('click', () => {
+      aboutVideo.muted = false;
+      aboutVideo.play();
+      videoPlayBtn.classList.add('is-hidden');
+      videoControls.classList.add('is-visible');
+    });
+
+    videoPauseBtn.addEventListener('click', () => {
+      if (aboutVideo.paused) {
+        aboutVideo.play();
+        videoPauseBtn.innerHTML = pauseIcon;
+        videoPauseBtn.setAttribute('aria-label', 'Пауза');
+      } else {
+        aboutVideo.pause();
+        videoPauseBtn.innerHTML = playIcon;
+        videoPauseBtn.setAttribute('aria-label', 'Відтворити');
+      }
+    });
+
+    videoMuteBtn.addEventListener('click', () => {
+      aboutVideo.muted = !aboutVideo.muted;
+      videoMuteBtn.innerHTML = aboutVideo.muted ? mutedIcon : unmutedIcon;
+      videoMuteBtn.setAttribute('aria-label', aboutVideo.muted ? 'Увімкнути звук' : 'Вимкнути звук');
+    });
+
+    aboutVideo.addEventListener('ended', () => {
+      aboutVideo.currentTime = 0;
+      resetPlayer();
+    });
+  }
 
   // reveal on scroll
   const io = new IntersectionObserver((entries) => {
