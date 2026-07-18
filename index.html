@@ -277,6 +277,7 @@
   .btn-primary:hover{ background:#ffd43f; transform:translateY(-2px); box-shadow:0 14px 30px -10px rgba(245,194,29,.45); }
   .btn-primary:active{ transform:translateY(0); }
   .btn-primary:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
+  .btn:disabled{ opacity:.6; pointer-events:none; }
 
   .btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); padding:.2rem .3rem .2rem 1.3rem; }
   .btn-ghost .btn-circle{ background:var(--ink); color:#161410; }
@@ -453,6 +454,7 @@
   }
   .compare-icon svg{ width:14px; height:14px; }
   .compare-icon.is-bad{ background:rgba(224,90,79,.13); color:#e05a4f; }
+  .text-danger{ color:#e05a4f; }
   .compare-icon.is-good{ background:rgba(245,194,29,.14); color:var(--yellow); }
 
   .compare-divider{ position:relative; }
@@ -1105,15 +1107,15 @@
       <div id="formFields" class="space-y-4">
         <div>
           <label class="text-xs text-dim block mb-2">Ім'я</label>
-          <input type="text" required class="field" placeholder="Як до вас звертатись">
+          <input type="text" name="name" required class="field" placeholder="Як до вас звертатись">
         </div>
         <div>
           <label class="text-xs text-dim block mb-2">Телефон</label>
-          <input type="tel" required class="field" placeholder="+380 __ ___ __ __">
+          <input type="tel" name="phone" required class="field" placeholder="+380 __ ___ __ __">
         </div>
         <div>
           <label class="text-xs text-dim block mb-2">Яку техніку&nbsp;шукаєте</label>
-          <select class="field" required>
+          <select name="category" class="field" required>
             <option value="" disabled selected>Оберіть категорію</option>
             <option>Екскаватор / міні-екскаватор</option>
             <option>Телескопічний навантажувач</option>
@@ -1125,9 +1127,10 @@
         </div>
         <div>
           <label class="text-xs text-dim block mb-2">Коментар <span class="text-dim/60">(необов'язково)</span></label>
-          <textarea rows="3" class="field resize-none" placeholder="Модель, рік, бюджет — будь-які деталі"></textarea>
+          <textarea name="comment" rows="3" class="field resize-none" placeholder="Модель, рік, бюджет — будь-які деталі"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary w-full justify-center">Надіслати заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
+        <p id="formError" class="hidden text-xs text-center text-danger">Не вдалося надіслати заявку. Спробуйте ще раз або зателефонуйте нам.</p>
+        <button type="submit" id="formSubmitBtn" class="btn btn-primary w-full justify-center">Надіслати заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
         <p class="text-xs text-dim/70 text-center pt-1">Натискаючи кнопку, ви погоджуєтесь на обробку персональних&nbsp;даних.</p>
       </div>
     </form>
@@ -1271,10 +1274,28 @@
 
   // lead form
   const form = document.getElementById('leadForm');
-  form.addEventListener('submit', (e) => {
+  const formErrorEl = document.getElementById('formError');
+  const formSubmitBtn = document.getElementById('formSubmitBtn');
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    document.getElementById('formFields').classList.add('hidden');
-    document.getElementById('formSuccess').classList.remove('hidden');
+    formErrorEl.classList.add('hidden');
+    formSubmitBtn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const res = await fetch('/api/send-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('request failed');
+      document.getElementById('formFields').classList.add('hidden');
+      document.getElementById('formSuccess').classList.remove('hidden');
+    } catch (err) {
+      formErrorEl.classList.remove('hidden');
+      formSubmitBtn.disabled = false;
+    }
   });
 </script>
 </body>
