@@ -312,6 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .btn-sm{ padding:.15rem .3rem .15rem 1rem; font-size:.78rem; }
   .btn-sm .btn-circle{ width:1.8rem; height:1.8rem; }
+  .btn-xs{ padding:.4rem .85rem; font-size:.7rem; }
 
   /* cards & surfaces */
   .surface{ background:var(--card); border:1px solid var(--line); border-radius:1.4rem; }
@@ -497,7 +498,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container-x flex items-center justify-between py-4">
     <a href="#hero" class="flex items-center gap-3 shrink-0">
       <picture><source srcset="images/logo.avif" type="image/avif"><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.jpg" alt="DS Motors — логотип компанії з підбору вживаної спецтехніки" class="w-11 h-11 rounded-xl object-cover"></picture>
-      <span class="font-display font-bold tracking-tight text-lg leading-none">DS MOTORS</span>
+      <span class="hidden lg:inline font-display font-bold tracking-tight text-lg leading-none">DS MOTORS</span>
     </a>
 
     <nav class="hidden lg:flex items-center gap-8 font-body text-sm">
@@ -514,10 +515,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#form" class="btn btn-primary">Залишити заявку<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
     </div>
 
-    <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5" aria-label="Меню" aria-expanded="false">
-      <span class="burger-bar block w-6 h-[1.5px] bg-ink"></span>
-      <span class="burger-bar block w-6 h-[1.5px] bg-ink"></span>
-    </button>
+    <div class="flex items-center gap-2 lg:hidden">
+      <a href="#form" class="btn btn-primary btn-xs">Отримати прорахунок</a>
+      <button id="menuBtn" class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 shrink-0" aria-label="Меню" aria-expanded="false">
+        <span class="burger-bar block w-6 h-[1.5px] bg-ink"></span>
+        <span class="burger-bar block w-6 h-[1.5px] bg-ink"></span>
+      </button>
+    </div>
   </div>
 </header>
 
