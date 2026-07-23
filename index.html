@@ -1314,6 +1314,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!res.ok) throw new Error('request failed');
       document.getElementById('formFields').classList.add('hidden');
       document.getElementById('formSuccess').classList.remove('hidden');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'success_send_form' });
     } catch (err) {
       formErrorEl.classList.remove('hidden');
       formSubmitBtn.disabled = false;
