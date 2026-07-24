@@ -367,6 +367,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .field:focus{ outline:none; border-color:var(--yellow); background:#201d18; }
   select.field{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23a39c8f' stroke-width='1.6'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; background-size:16px; }
 
+  /* callback modal */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; background:rgba(10,9,8,.72); backdrop-filter:blur(4px);
+    opacity:0; pointer-events:none; transition:opacity .35s ease;
+  }
+  .modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .modal-card{
+    position:relative; width:100%; max-width:26rem; background:var(--card); border:1px solid var(--line);
+    border-radius:1.4rem; padding:2rem; transform:translateY(16px) scale(.97);
+    transition:transform .4s cubic-bezier(.16,1,.3,1);
+    box-shadow:0 40px 80px -20px rgba(0,0,0,.6);
+  }
+  .modal-overlay.open .modal-card{ transform:translateY(0) scale(1); }
+  .modal-close{
+    position:absolute; top:1rem; right:1rem; width:2.25rem; height:2.25rem; border-radius:999px; flex:none;
+    display:flex; align-items:center; justify-content:center; color:var(--dim); border:1px solid var(--line);
+    transition:color .3s ease, border-color .3s ease, transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .modal-close:hover{ color:var(--yellow); border-color:rgba(245,194,29,.45); transform:rotate(90deg); }
+  .modal-close:active{ transform:rotate(90deg) scale(.9); }
+  .modal-close:focus-visible{ outline:2px solid var(--yellow); outline-offset:2px; }
+  .modal-close svg{ width:16px; height:16px; }
+
   .checklist li{ display:flex; align-items:flex-start; gap:.75rem; }
   .checklist svg{ width:18px; height:18px; flex:none; margin-top:.2rem; color:var(--yellow); }
 
@@ -561,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="mt-9 flex flex-wrap items-center gap-4">
         <a href="#form" class="btn btn-primary w-full lg:w-auto justify-center">Замовити прорахунок<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-        <a href="tel:+48798586775" class="btn btn-ghost w-full lg:w-auto justify-center">Подзвонити нам<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></span></a>
+        <button type="button" id="callbackTrigger" class="btn btn-ghost w-full lg:w-auto justify-center">Передзвоніть мені<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></span></button>
       </div>
     </div>
 
@@ -1236,6 +1260,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<div id="callbackModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="callbackModalTitle">
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="callbackModalClose" aria-label="Закрити"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+
+    <div id="callbackFormSuccess" class="hidden text-center py-6">
+      <div class="w-14 h-14 rounded-full bg-yellow/15 text-yellow flex items-center justify-center mx-auto"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+      <p class="h3 mt-5">Заявку&nbsp;надіслано</p>
+      <p class="text-dim text-sm mt-2">Ми передзвонимо вам найближчим&nbsp;часом.</p>
+    </div>
+
+    <div id="callbackFormFields">
+      <p id="callbackModalTitle" class="h3">Передзвоніть мені</p>
+      <p class="text-dim text-sm mt-2">Залиште ім'я та номер — ми зателефонуємо найближчим&nbsp;часом.</p>
+
+      <form id="callbackForm" class="mt-6 space-y-4">
+        <div>
+          <label class="text-xs text-dim block mb-2">Ім'я</label>
+          <input type="text" name="name" required class="field" placeholder="Як до вас звертатись">
+        </div>
+        <div>
+          <label class="text-xs text-dim block mb-2">Телефон</label>
+          <input type="tel" name="phone" required class="field" placeholder="+380 __ ___ __ __">
+        </div>
+        <p id="callbackFormError" class="hidden text-xs text-center text-danger">Не вдалося надіслати заявку. Спробуйте ще раз або зателефонуйте нам.</p>
+        <button type="submit" id="callbackSubmitBtn" class="btn btn-primary w-full justify-center">Замовити дзвінок<span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
   // mobile nav
   const menuBtn = document.getElementById('menuBtn');
@@ -1341,6 +1395,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     } catch (err) {
       formErrorEl.classList.remove('hidden');
       formSubmitBtn.disabled = false;
+    }
+  });
+
+  // callback modal
+  const callbackTrigger = document.getElementById('callbackTrigger');
+  const callbackModal = document.getElementById('callbackModal');
+  const callbackModalClose = document.getElementById('callbackModalClose');
+  const callbackForm = document.getElementById('callbackForm');
+  const callbackFormFields = document.getElementById('callbackFormFields');
+  const callbackFormSuccess = document.getElementById('callbackFormSuccess');
+  const callbackFormError = document.getElementById('callbackFormError');
+  const callbackSubmitBtn = document.getElementById('callbackSubmitBtn');
+
+  const openCallbackModal = () => {
+    callbackForm.reset();
+    callbackFormError.classList.add('hidden');
+    callbackFormFields.classList.remove('hidden');
+    callbackFormSuccess.classList.add('hidden');
+    callbackSubmitBtn.disabled = false;
+    callbackModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeCallbackModal = () => {
+    callbackModal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  callbackTrigger.addEventListener('click', openCallbackModal);
+  callbackModalClose.addEventListener('click', closeCallbackModal);
+  callbackModal.addEventListener('click', (e) => { if (e.target === callbackModal) closeCallbackModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && callbackModal.classList.contains('open')) closeCallbackModal();
+  });
+
+  callbackForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    callbackFormError.classList.add('hidden');
+    callbackSubmitBtn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(callbackForm).entries());
+    data.category = 'Передзвоніть мені';
+
+    try {
+      const res = await fetch('/api/send-lead.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('request failed');
+      callbackFormFields.classList.add('hidden');
+      callbackFormSuccess.classList.remove('hidden');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'success_send_form' });
+    } catch (err) {
+      callbackFormError.classList.remove('hidden');
+      callbackSubmitBtn.disabled = false;
     }
   });
 </script>
